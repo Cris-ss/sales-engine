@@ -1,0 +1,214 @@
+# Configuração dos nichos de prospecção.
+#
+# Cada nicho é usado em três pontos do pipeline:
+#   1. `cnae` -> filtro de busca na etapa1_busca (Receita Federal via Apify)
+#   2. `contexto_dores` / `argumentos_venda` / `tom_abordagem` -> insumo para
+#      a etapa3_scoring (fit da IA) e etapa4_email (geração de mensagem)
+
+nichos:
+  contabilidade:
+    nome: "Escritórios de Contabilidade"
+    cnae: "6920601"  # Atividades de contabilidade
+
+    contexto_dores: |
+      Escritórios de contabilidade pequenos e médios (1 a 15 colaboradores)
+      geralmente operam com margem apertada por causa de precificação por
+      "pacote fechado" que não escala com a complexidade real do cliente.
+      Dores recorrentes observadas no setor:
+      - Sobrecarga operacional na época de fechamento mensal e obrigações
+        acessórias (SPED, DCTFWeb, eSocial), com equipe pequena fazendo
+        trabalho repetitivo manualmente.
+      - Dificuldade de captar novos clientes: dependem quase exclusivamente
+        de indicação boca a boca, sem presença digital estruturada.
+      - Alto custo de retrabalho por erro humano em lançamentos contábeis
+        e conciliações, gerando risco fiscal para o cliente e para o
+        próprio escritório (responsabilidade solidária em alguns casos).
+      - Concorrência de "contabilidade online" de baixo custo pressionando
+        preço, sem diferenciação clara no atendimento.
+      - Pouca visibilidade sobre a saúde financeira dos próprios clientes
+        PJ, o que dificulta upsell de serviços de consultoria.
+
+    argumentos_venda: |
+      - Automação de tarefas repetitivas de fechamento libera horas da
+        equipe para atendimento consultivo (maior ticket médio por cliente).
+      - Redução de erro humano em lançamentos e conciliações diminui risco
+        fiscal e retrabalho, argumento forte para escritórios que já
+        sofreram autuação ou multa por erro de terceiros.
+      - Presença digital estruturada (site + captação de leads) ataca
+        diretamente a dependência de indicação, abrindo um canal de
+        aquisição escalável e mensurável.
+      - Diferenciação frente à "contabilidade online" via atendimento
+        mais próximo, sustentado por ferramentas que dão a mesma agilidade
+        do concorrente de baixo custo.
+
+    tom_abordagem: |
+      Direto, técnico e sem jargão de vendas. Contadores respondem melhor a
+      números concretos (horas economizadas, redução percentual de erro)
+      do que a promessas vagas de "transformação digital". Evitar tom
+      informal demais; usar linguagem próxima da usada em comunicação
+      contábil formal, mas objetiva e curta.
+
+  imobiliarias:
+    nome: "Imobiliárias e Corretoras"
+    cnae: "6821801"  # Corretagem na compra e venda e avaliação de imóveis
+
+    contexto_dores: |
+      Imobiliárias pequenas e médias e corretores autônomos organizados em
+      escritório enfrentam:
+      - Dependência forte de portais pagos (ex.: portais de anúncio de
+        imóveis) para geração de lead, com CAC crescente e pouca
+        diferenciação frente a outras imobiliárias anunciando o mesmo
+        imóvel.
+      - Baixa taxa de resposta a leads recebidos por falta de processo
+        estruturado de follow-up (lead esfria em horas).
+      - Carteira de imóveis desatualizada em múltiplos canais (site
+        próprio, portais, redes sociais), gerando inconsistência de preço
+        e disponibilidade.
+      - Dificuldade em nutrir relacionamento de longo prazo com quem
+        "só está pesquisando" (ciclo de decisão de compra de imóvel é
+        longo, meses a anos), perdendo esse contato para concorrentes
+        mais presentes.
+      - Pouca visibilidade de métricas de funil (quantos contatos viram
+        visita, quantas visitas viram proposta), dificultando saber onde
+        o processo comercial está vazando.
+
+    argumentos_venda: |
+      - Canal de captação direto (site + formulário/e-mail) reduz
+        dependência de portal pago e melhora margem por lead.
+      - Resposta rápida e estruturada a novos contatos aumenta
+        conversão de lead em visita, atacando diretamente o problema de
+        "lead esfria".
+      - Centralização e visibilidade de funil (estágios de negociação)
+        ajudam a identificar gargalos e priorizar atendimento de quem
+        está mais perto de decidir.
+      - Nutrição de contatos de ciclo longo evita perder para concorrente
+        que simplesmente está mais presente ao longo do tempo.
+
+    tom_abordagem: |
+      Consultivo e orientado a resultado comercial (conversão, CAC,
+      número de visitas). Corretores e gestores de imobiliária reagem bem
+      a linguagem de vendas mais direta e a exemplos concretos de ganho
+      de conversão, mas sem soar como "mais um vendedor de sistema" —
+      abrir com uma dor específica do setor, não com pitch genérico de
+      software.
+
+  advocacia:
+    nome: "Advocacia e Consultoria Jurídica"
+    cnae: "6911701"  # Serviços advocatícios
+    contexto_dores: &profissionais_dores |
+      Pequenos escritórios de serviços profissionais dependem de indicação,
+      têm atendimento e follow-up dispersos e pouca previsibilidade na captação.
+    argumentos_venda: &profissionais_argumentos |
+      Organização de contatos, automação de follow-up e presença digital clara
+      reduzem trabalho operacional e tornam a captação mais previsível.
+    tom_abordagem: &profissionais_tom |
+      Consultivo, objetivo e profissional. Usar exemplos concretos, sem promessas
+      genéricas ou linguagem agressiva de vendas.
+
+  saloes_beauty:
+    nome: "Salões de Beleza e Manicure"
+    cnae: "9602501"  # Cabeleireiros, manicure e pedicure
+    contexto_dores: &atendimento_dores |
+      Negócios locais de atendimento perdem oportunidades por agenda manual,
+      respostas lentas e dependência de redes sociais para atrair clientes.
+    argumentos_venda: &atendimento_argumentos |
+      Agendamento, lembretes e captação organizada reduzem faltas e melhoram a
+      conversão de pessoas que já demonstraram interesse.
+    tom_abordagem: &atendimento_tom |
+      Direto, simples e orientado ao resultado do negócio. Evitar jargão técnico.
+
+  barbearias_estetica:
+    nome: "Barbearias e Estética"
+    cnae: "9602502"  # Atividades de estética e cuidados com a beleza
+    contexto_dores: *atendimento_dores
+    argumentos_venda: *atendimento_argumentos
+    tom_abordagem: *atendimento_tom
+
+  construtoras:
+    nome: "Construtoras e Empreiteiras"
+    cnae: "4120400"  # Construção de edifícios
+    contexto_dores: &operacional_dores |
+      Empresas com operação em campo enfrentam processos comerciais dispersos,
+      orçamentos sem acompanhamento e pouca visibilidade dos retornos recebidos.
+    argumentos_venda: &operacional_argumentos |
+      Centralizar contatos, propostas e follow-up ajuda a reduzir perdas entre a
+      primeira conversa e a contratação.
+    tom_abordagem: &operacional_tom |
+      Objetivo e prático, com foco em organização comercial e ganho operacional.
+
+  oficinas_mecanicas:
+    nome: "Oficinas Mecânicas"
+    cnae: "4520001"  # Serviços de manutenção e reparação mecânica de veículos
+    contexto_dores: *operacional_dores
+    argumentos_venda: *operacional_argumentos
+    tom_abordagem: *atendimento_tom
+
+  odontologia:
+    nome: "Dentistas e Clínicas Odontológicas"
+    cnae: "8630504"  # Atividade odontológica
+    contexto_dores: *atendimento_dores
+    argumentos_venda: *atendimento_argumentos
+    tom_abordagem: *profissionais_tom
+
+  clinicas_medicas:
+    nome: "Clínicas Médicas"
+    cnae: "8630503"  # Atividade médica ambulatorial restrita a consultas
+    contexto_dores: *atendimento_dores
+    argumentos_venda: *atendimento_argumentos
+    tom_abordagem: *profissionais_tom
+
+  psicologia:
+    nome: "Psicologia"
+    cnae: "8650003"  # Atividade de psicologia e psicanálise
+    contexto_dores: *profissionais_dores
+    argumentos_venda: *profissionais_argumentos
+    tom_abordagem: *profissionais_tom
+
+  nutricao:
+    nome: "Nutricionistas"
+    cnae: "8650002"  # Atividades de profissionais da nutrição
+    contexto_dores: *profissionais_dores
+    argumentos_venda: *profissionais_argumentos
+    tom_abordagem: *profissionais_tom
+
+  fisioterapia:
+    nome: "Fisioterapia"
+    cnae: "8650004"  # Atividades de fisioterapia
+    contexto_dores: *atendimento_dores
+    argumentos_venda: *atendimento_argumentos
+    tom_abordagem: *profissionais_tom
+
+  academias:
+    nome: "Academias"
+    cnae: "9313100"  # Atividades de condicionamento físico
+    contexto_dores: *atendimento_dores
+    argumentos_venda: *atendimento_argumentos
+    tom_abordagem: *atendimento_tom
+
+  petshops_veterinaria:
+    nome: "Pet Shops e Veterinária"
+    cnae: "7500100"  # Atividades veterinárias
+    contexto_dores: *atendimento_dores
+    argumentos_venda: *atendimento_argumentos
+    tom_abordagem: *atendimento_tom
+
+  restaurantes:
+    nome: "Restaurantes e Pizzarias"
+    cnae: "5611201"  # Restaurantes e similares
+    contexto_dores: *atendimento_dores
+    argumentos_venda: *atendimento_argumentos
+    tom_abordagem: *atendimento_tom
+
+  lanchonetes:
+    nome: "Lanchonetes"
+    cnae: "5611203"  # Lanchonetes, casas de chá, sucos e similares
+    contexto_dores: *atendimento_dores
+    argumentos_venda: *atendimento_argumentos
+    tom_abordagem: *atendimento_tom
+
+  padarias:
+    nome: "Padarias"
+    cnae: "4721102"  # Padaria e confeitaria com predominância de revenda
+    contexto_dores: *atendimento_dores
+    argumentos_venda: *atendimento_argumentos
+    tom_abordagem: *atendimento_tom

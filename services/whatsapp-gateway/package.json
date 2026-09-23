@@ -1,0 +1,22 @@
+{
+  "name": "whatsapp-gateway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Gateway Baileys da Etapa 7 do sales-engine: sessão, eventos brutos e envio da outbox. Não decide nada comercial.",
+  "scripts": {
+    "build": "tsc -p .",
+    "start": "node dist/src/index.js",
+    "test": "tsc -p . && node --test --test-concurrency=1 dist/test/*.test.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "7.0.0-rc14",
+    "pg": "8.23.0",
+    "pino": "10.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.2",
+    "@types/pg": "^8.23.1",
+    "typescript": "^7.0.2"
+  }
+}
